@@ -1,0 +1,11 @@
+runtime: python39  # or nodejs if you use Node
+entrypoint: gunicorn -b :$PORT main:app  # if you use Flask; skip for static
+
+handlers:
+- url: /
+  static_files: index.html
+  upload: index.html
+
+- url: /(.*)
+  static_files: \1
+  upload: (.*)
